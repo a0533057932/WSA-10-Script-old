@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   check:
-    if: ${{github.repository == 'a0533057932/WSA-Script'}}
+    if: ${{github.repository == 'a0533057932/WSA-10-Script'}}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
