@@ -44,6 +44,19 @@ on:
         required: true
         default: true
         type: boolean
+      tag:
+        description: "Release Tag Name"
+        required: true
+        default: "WSA"
+        type: string
+      prerelease:
+        description: "Release as Prerelease"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+    contents: write
 
 jobs:
   matrix:
@@ -51,6 +64,8 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Generate build matrix
         id: set-matrix
         uses: actions/github-script@v6
@@ -104,8 +119,15 @@ jobs:
         run: |
           cd ./output/
           sha256sum '${{ steps.wsa.outputs.artifact }}${{ inputs.compression }}' >> sha256-checksum.txt
-      - name: Upload Artifact 🤌
-        uses: actions/upload-artifact@v3
+#      - name: Upload Artifact 🤌
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: ${{ steps.wsa.outputs.artifact }}
+#          path: ./output
+      - name: Upload Asset
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.wsa.outputs.artifact }}
-          path: ./output
+            files: ./output/${{ steps.wsa.outputs.artifact }}.*
+            name: WSA
+            tag_name: ${{ inputs.tag }}
+            prerelease: ${{ inputs.prerelease }}
