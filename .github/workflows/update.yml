@@ -3,30 +3,20 @@ on:
   schedule:
     - cron: "0 0 * * *"
   workflow_dispatch:
-  
 jobs:
   check:
-    if: ${{github.repository == 'YT-Advanced/WSA-Script'}}
+    if: ${{github.repository == 'a0533057932/WSA-10-Script'}}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ♻️
+      - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Install Dependencies 🧑‍🏭
+      - name: Dependencies
         run: |
           pip3 install beautifulsoup4 lxml
-      
-      - name: Add package to cache if not exist 🧑‍🏭
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: ca-certificates lzip patchelf e2fsprogs aria2 p7zip-full attr unzip xz-utils qemu-utils
-          version: 1.0
-
-      - name: Create branch if not found 🏗️
+      - name: Create branch if not found
         run: |
           git checkout -f update || git switch --discard-changes --orphan update
-      
-      - name: Get app version ✅
+      - name: Get app version
         shell: python
         run: |
           import requests
@@ -80,8 +70,7 @@ jobs:
               with open(env_file, "a") as wr:
                   wr.write("SHOULD_BUILD=no")
                   
-      - name: Update App version 🔗
-        uses: stefanzweifel/git-auto-commit-action@v4.16.0
+      - uses: stefanzweifel/git-auto-commit-action@v4.16.0
         if: ${{ env.SHOULD_BUILD == 'yes'}}
         with:
           branch: update
@@ -90,19 +79,19 @@ jobs:
           commit_message: ${{ env.MSG }}
           create_branch: true
           
-      - name: Prepare release tag 🏷️
+      - name: Prepare release tag
         if: ${{ env.SHOULD_BUILD == 'yes'}}
         id: date
         run: echo "date=$(date +'v%Y-%m-%d')" >> $GITHUB_OUTPUT
         
-      - name: Add text format to release 📝
+      - name: Add text format to release
         if: ${{ env.SHOULD_BUILD == 'yes'}}
         uses: softprops/action-gh-release@v0.1.15
         with:
           tag_name: ${{ steps.date.outputs.date }}
           body: "# Changelog\n### ${{ env.MSG }}\n### SHA256 Checksum\n```"
       
-      - name: Delete old workflow run ❌
+      - name: Delete old workflow run
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{ github.token }}
@@ -110,9 +99,9 @@ jobs:
           retain_days: 0
           keep_minimum_runs: 0
           delete_workflow_pattern: "Check update"
-          
     outputs:
       SHOULD_BUILD: ${{ env.SHOULD_BUILD }}
+
 
   build:
     permissions: write-all
