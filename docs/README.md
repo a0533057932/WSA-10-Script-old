@@ -1,6 +1,7 @@
 # WSA-Script
 ### MagiskOnWSA (For Windows™ 10 and 11) by [@YT-Advanced](https://github.com/YT-Advanced/)
 #### Windows Subsystem For Android™ (WSA) with Google Play Services and Magisk 
+
 <details>     
    <summary><h3> &nbsp; ❓Want to build your custom build❓ <h3></summary>
       
@@ -9,94 +10,162 @@
 |------------------------------------------------------------------------|
 |**This repository is designed specifically not to be forked. MagiskOnWSA and some of the various forks and clones that have sprung up on the platform (***potentially***) violate GitHub's Terms of Service due to abuse of GitHub Actions and have been ultimately warned, disabled or banned.**| 
 |**Therefore, don't fork this repository unless you're a developer and want to modify the code itself and/or want to contribute to this Github repository.**|
-|**If you want to create your Custom Build, please follow the instructions set out clearly, to avoid the repo from being taken down as a result of a misuse of Github Actions due to the large number of forks.**|
+|**If you want to create your Custom Build, please follow the instructions set out clearly, to avoid the repo from being taken down as a result of a misuse of Github Actions due to the large number of forks. AND ALSO if you want to build with Latest Insider version, please skip the first 7 steps**|
       
 #### **1. Star this repos (I will happy if you do that)**
 
+#### **2. Check the version from [Releases](https://github.com/YT-Advanced/WSA-Scrpt/releases/) first. If it does not have the version you want, continue to follow this guide. If it does, then feel free to use those prebuild WSA builds**
 
-#### **2. Check the version from [Releases](https://github.com/YT-Advanced/WSA-Scrpt/releases/latest) first. If it does not have the version you want, continue to follow this guide. If it does, then feel free to use those prebuild WSA builds**
+#### **3. Open [this page directly](https://YT-Advanced.github.io/WSA-Script) then choose the option that you want to build**
 
-  
-#### **3. Log into your Github Account (this is necessary) and in the home page, click on the button (shown below) and select "import a repository" or go to [this page directly](https://github.com/new/import)**
-   ***Step 3.1:***
+![image](https://user-images.githubusercontent.com/70064328/236150011-191bf3a8-2efb-44a1-af44-202c6ea9fe66.png)
+
+#### **4. Click "Create Issues" Button, the issues page will be generated and open. Then you click "Submit New Issues" (green button) and wait.**
+![image](https://user-images.githubusercontent.com/70064328/236150320-65fdd492-9fc4-4176-b3bd-a3cee8b7753d.png)
+
+#### **5. After about 15 minutes, the bot will reply that the workflow have built successfully (like the picture below), OPEN THE LINK BELOW THE BOT COMMENT**
+![image](https://user-images.githubusercontent.com/70064328/236154819-75dd1997-1999-43fd-a482-050f21e34b72.png)
+
+#### **6. Download the package as artifact**
+**DO NOT download it via multithread downloaders like IDM**
+![image](https://user-images.githubusercontent.com/68516357/222224469-5748b78a-158e-46ff-9f65-317dbb519aac.png)
+
+#### **7. Install like normal using [the instructions](https://github.com/YT-Advanced/WSA-Script#--installation) in this repository** and most important of all....
+
+---
+<summary><h3> &nbsp; The workflow didn't work ❓ Follow these step <h3></summary>
+
+#### **1. Open the home page, click on the button (shown below) and select "import a repository" or go to [this page directly](https://github.com/new/import)**
+   ***Step 1.1:***
    
    <img src="https://user-images.githubusercontent.com/68516357/221636520-78d0716a-247b-4034-aa9d-bdbe2277950c.png" style="width: 350px;"/>
    
-   ***Step 3.2:***
+   ***Step 1.2:***
    
    ![image](https://user-images.githubusercontent.com/68516357/221641202-e3ef4deb-f2dd-46e6-82c8-fb4767f82e99.png)
    
 ---   
-#### **4. [Copy the URL of this Repo](https://github.com/YT-Advanced/WSA-Script) and paste it into the the text box below and press "Import"** 
+#### **2. [Copy the URL of this Repo](https://github.com/YT-Advanced/WSA-Script) and paste it into the the text box below and press "Import"** 
 
 ![image](https://user-images.githubusercontent.com/68516357/221643582-72d71f68-8f53-48d9-a940-692a54d42098.png)
 
 ---
-#### **5. Go to the **Setting** tab in your newly imported repo and enable "Github Actions"**
-   ***Step 5.1:***
+#### **3. Go to the **Setting** tab in your newly imported repo and enable "Github Actions"**
+   ***Step 3.1:***
    
 ![Settings](https://user-images.githubusercontent.com/68516357/222214308-b52b1c6f-a60b-44ef-9ce0-bc335087e3a2.png)
 
-   ***Step 5.2:***
+   ***Step 3.2:***
    
 ![MRq9WD3SO2](https://user-images.githubusercontent.com/68516357/222215598-30d68ad3-9700-4061-bba4-815b3befcb10.png)
 
 ---
-#### **6. Then, scroll down until you reach the section titled "Workflow Permission" and follow the steps as shown in the image below**
+#### **4. Then, scroll down until you reach the section titled "Workflow Permission" and follow the steps as shown in the image below**
 ![image](https://user-images.githubusercontent.com/68516357/224546417-a82249b4-3864-42bd-8a29-32350b8b0c97.png)
 
 ---
-#### **7. Open [this link](https://github.com/settings/tokens/new) in new tab, then follow the step below. FINALLY, SCROLL DOWN AND CLICK GENERATE TOKEN**
+#### **5. Open [this link](https://github.com/settings/tokens/new) in new tab, then follow the step below. FINALLY, SCROLL DOWN AND CLICK GENERATE TOKEN**
 ![image](https://user-images.githubusercontent.com/70064328/231184720-0d3b4ce7-0b82-4b1f-b337-5f0fd0ceb632.png)
 
 ---
-#### **8. The key will appear. Then click the copy button at right side of the key.**
+#### **6. The key will appear. Then click the copy button at right side of the key.**
 ![image](https://user-images.githubusercontent.com/70064328/231189492-cf3b407e-708b-4224-ba4e-11f3e27012a1.png)
 
 ---
-#### **9. Now, back to your repository **Setting** tab, and open Secret and Variable, then click Action. Next click **New reporistory secret** button**
+#### **7. Now, back to your repository **Setting** tab, and open Secret and Variable, then click Action. Next click **New reporistory secret** button**
 ![image](https://user-images.githubusercontent.com/70064328/231191605-1e3c4b53-6d17-49f5-8e7f-c752ae12aee8.png)
 
 ---
-#### **10. In the name boxes, type PAT. Next, paste your copied Secret key to Secret boxes, then click **Add Secrets** button**
+#### **8. In the name boxes, type PAT. Next, paste your copied Secret key to Secret boxes, then click **Add Secrets** button**
 ![image](https://user-images.githubusercontent.com/70064328/231192376-16aa194c-07ae-4262-857f-d9d86701a110.png)
 
 ---
-#### **11. Now, Go to the **Action** tab**
+#### **9. Now, Go to the **Action** tab**
 ![CvYhP0B0CI](https://user-images.githubusercontent.com/68516357/222221960-f48ab9c3-eb77-4cb0-b932-5cd343381048.png)
 
 ---
-#### **12. In the left sidebar, click the **Custom Build** workflow.**
+#### **10. In the left sidebar, click the **Custom Build** workflow.**
 ![image](https://user-images.githubusercontent.com/68516357/222221307-8a4571d2-ac3e-410b-b999-0eb62b14d8d5.png)
 
 ---
-#### **13. Above the list of workflow runs, select **Run workflow****
+#### **11. Above the list of workflow runs, select **Run workflow****
 ![image](https://user-images.githubusercontent.com/68516357/222222850-f991890c-5a80-4cc2-b83d-0ef35c24a79e.png)
 
 ---
-#### **14. Select your desired options such as ***Magisk Version***, ***WSA Release Channel + WSA Archetecture*** , ***GApps Varient*** and ***Compression Format*** then click **Run workflow****
+#### **12. Select your desired options such as ***Magisk Version***, ***WSA Release Channel + WSA Archetecture*** , ***GApps Varient*** and ***Compression Format*** then click **Run workflow****
 ![image](https://user-images.githubusercontent.com/68516357/222224185-abcfa0cf-c8c6-46e3-bc38-871c968b86f2.png)
 
 ---    
-#### **15. Wait for the action to complete and download the artifact**
+#### **13. Wait for the action to complete and download the artifact**
 **DO NOT download it via multithread downloaders like IDM**
 ![image](https://user-images.githubusercontent.com/68516357/222224469-5748b78a-158e-46ff-9f65-317dbb519aac.png)
 
 ---
-#### **16. Install like normal using [the instructions](https://github.com/YT-Advanced/WSA-Script#--installation) in this repository** and most important of all....
+#### **14. Install like normal using [the instructions](https://github.com/YT-Advanced/WSA-Script#--installation) in this repository** and most important of all....
 </details>
 
 ## Requirements
-|Component|     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 200px;"/>|  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Windows_10_Logo.svg" style="width: 200px;"/>     |
-|-----------------|-----------------------|-----------------------|
-|<img style="float: right;" src="https://img.icons8.com/fluency/96/null/windows-update--v1.png" width="60" height="60"/><h4>Windows Build Number<h4>|Windows™ 11: Build 22000.526 or higher.|Windows™ 10: 20H2 Build 19042.2604 or higher. <br /> <br /> You must install [KB5014032](https://www.catalog.update.microsoft.com/Search.aspx?q=KB5014032) then install [KB5022834](https://www.catalog.update.microsoft.com/Search.aspx?q=KB5022834) to use WSA on these older Windows 10 builds <br /> <br /> |
-|<img style="float: right;" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/null/external-RAM-technology-and-devices-smashingstocks-flat-smashing-stocks.png" width="60" height="60"/><h4>RAM<h4>|6 GB (not recommended), 8 GB (minimum) and 16 GB (recommended).|6 GB (not recommended), 8 GB (minimum) and 16 GB (recommended).|
-|<img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/electronics.png" width="60" height="60"/><h4>Processor<h4>|Your PC should meet the basic Windows™ 11 requirements i.e Core i3 8th Gen, Ryzen 3000, Snapdragon 8c, or above.|N/A </br></br> This is a bit of a hit or miss, but it is highly recommended that your processor is listed in the [supported CPU lists for Windows 11 requirements](https://learn.microsoft.com/en-gb/windows-hardware/design/minimum/windows-processor-requirements)
-|<img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/video-card.png" width="60" height="60"/><h4>GPU<h4>|- Any compatible Intel, AMD or Nvidia GPU. <br /> - GPU Performance may vary depending on its compatibility with Windows Subsystem For Android™  <br />|- Any compatible Intel, AMD or Nvidia GPU. <br /> - GPU Performance may vary depending on its compatibility with Windows Subsystem For Android™  <br />|
-<img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/ssd.png" width="60" height="60"/><h4>Storage<h4>|Solid-state drive (SSD) <br /> - Hard Disk Drive (HDD) (NOT RECOMMENDED).|Solid-state drive (SSD) <br /> - Hard Disk Drive (HDD) (NOT RECOMMENDED).|
-|<img style="float: right;" src="https://img.icons8.com/stickers/100/null/storage.png" width="60" height="60"/><h4>Partition<h4>|NTFS <br /> Windows Subsystem For Android™ can only be installed on a NTFS partition, not on an exFAT partition |NTFS <br /> Windows Subsystem For Android™ can only be installed on a NTFS partition, not on an exFAT partition|
-|<img style="float: left;" src="https://user-images.githubusercontent.com/68516357/230764789-ad8f7361-4a3b-49a8-a8e9-24fdc87d5781.png" width="66" height="58"/><h4>Windows Features Needed<h4>|- Virtual Machine Platform Enabled <br /> - Windows Hypervisor Platform Enabled (Optinal)<br /> - Hyper V Enabled (Optinal)<br /> - Windows Subsystem For Linux™ Enabled (Optional) <br /><br /> These optional settings are for virtualization and provide components that are needed to run WSA. You can enable these settings from Control Panel/ Optional Features.|- Virtual Machine Platform Enabled <br /> - Windows Hypervisor Platform Enabled (Optinal)<br /> - Hyper V Enabled (Optinal) <br /> - Windows Subsystem For Linux™ Enabled (Optional) <br /><br /> These optional settings are for virtualization and provide components that are needed to run WSA. You can enable these settings from Control Panel/ Optional Features.|
-|<img style="float: right;" src="https://user-images.githubusercontent.com/68516357/230759907-5d11950e-1b17-4811-8f4e-a0f82e598079.png" width="60" height="60"/><h4>Virtualization<h4>|- The Computer must support virtualization and be enabled in BIOS/UEFI and Optional Features. [Guide](https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1)|- The Computer must support virtualization and be enabled in BIOS/UEFI and Optional Features. [Guide](https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1)|
+
+<center><table>
+<thead>
+  <tr>
+    <th></th>
+    <th><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Windows_11_logo.svg" style="width: 200px;"/></th>
+    <th><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Windows_10_Logo.svg" style="width: 200px;"/></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><img style="float: right;" src="https://img.icons8.com/fluency/96/null/windows-update--v1.png" width="60" height="60"/><h4>Windows Build Number<h4></td>
+    <td>Windows™ 11: Build 22000.526 or higher.</td>
+    <td>Windows™ 10: 22H2 10.0.19042.2604 or higher. <br /><br /><b>To use WSA, you must install <a href="https://www.catalog.update.microsoft.com/Search.aspx?q=KB5014032" target="_blank" rel="noopener noreferrer">KB5014032</a> then install <a href="https://www.catalog.update.microsoft.com/Search.aspx?q=KB5022834" target="_blank" rel="noopener noreferrer">KB5022834</a> to use WSA on these Windows 10 builds<b><br /><br /><b></td>
+  </tr>
+  <tr>
+    <td><img style="float: right;" src="https://img.icons8.com/external-smashingstocks-flat-smashing-stocks/66/null/external-RAM-technology-and-devices-smashingstocks-flat-smashing-stocks.png" width="60" height="60"/><h4>RAM<h4></td>
+    <td colspan="2"><ul><li>4 to 6 GB (Not Recommended)</li><li>8 GB (Minimum)</li><li>16 GB (Recommended)</li></ul></td>
+  </tr>
+  <tr>
+    <td><img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/electronics.png" width="60" height="60"/><h4>Processor<h4></td>
+    <td>Your PC should meet the basic Windows™ 11 requirements i.e Core i3 8th Gen, Ryzen 3000, Snapdragon 8c, or above</td>
+    <td>N/A </br></br> This is a bit of a hit or miss, but it is highly recommended that your processor is listed in the <a href="https://learn.microsoft.com/en-gb/windows-hardware/design/minimum/windows-processor-requirements" target="_blank" rel="noopener noreferrer">supported CPU lists for Windows 11 requirements</a></td>
+  </tr>
+  <tr>
+    <td><img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/video-card.png" width="60" height="60"/><h4>GPU<h4></td>
+      <td colspan="2">Any compatible Intel, AMD or Nvidia GPU. <br /> GPU Performance may vary depending on its compatibility with Windows Subsystem For Android™  <br /</td>
+  </tr>
+  <tr>
+    <td rowspan="2"><img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/ssd.png" width="60" height="60"/><h4>Storage<h4></td>
+    <td colspan="2">Solid-state drive (SSD) (RECOMMENDED) <br />OR</br> Hard Disk Drive (HDD)   (NOT RECOMMENDED)</td>
+  </tr>
+  <tr>
+     <td colspan="2"><b><i>Minimum Storage Requirements: You must have at least 10GB free on the system drive (C:\)<b><i></td>
+  </tr>
+  <tr>
+    <td><img style="float: right;" src="https://img.icons8.com/stickers/100/null/storage.png" width="60" height="60"/><h4>Partition<h4></td>
+    <td colspan="2"><b><i>NTFS ONLY<b><i> <br /><br /> Windows Subsystem For Android™ can only be installed on a NTFS partition, not on an exFAT partition</td>
+  </tr>
+  <tr>
+    <td rowspan="5"><img style="float: left;" src="https://user-images.githubusercontent.com/68516357/230764789-ad8f7361-4a3b-49a8-a8e9-24fdc87d5781.png" width="66" height="58"/><h4>Windows Features Needed<h4></td>
+    <td colspan="2">Virtual Machine Platform Enabled</td>
+  </tr>
+  <tr>
+    <td colspan="2">Windows Hypervisor Platform Enabled</td>
+  </tr>
+  <tr>
+    <td colspan="2">Windows Subsystem For Linux™ Enabled (Optional)</td>
+  </tr>
+  <tr>
+    <td colspan="2">Hyper V Enabled (Optional)</td>
+  </tr>
+  <tr>
+    <td colspan="2"><b><i>These optional settings are for virtualization and provide components that are needed to run WSA. You can enable these settings by pressing the Windows Key + R on your keyboard and typing "OptionalFeatures.exe" into the box, pressing enter and selecting the features above followed by pressing apply<b><i></td>
+  </tr>
+  <tr>
+    <td><img style="float: right;" src="https://user-images.githubusercontent.com/68516357/230759907-5d11950e-1b17-4811-8f4e-a0f82e598079.png" width="60" height="60"/><h4>Virtualization<h4></td>
+    <td colspan="2">The Computer must support virtualization and be enabled in BIOS/UEFI and Optional Features. </br> <h3><a href="https://support.microsoft.com/en-us/windows/enable-virtualization-on-windows-11-pcs-c5578302-6e43-4b4b-a449-8ced115f58e1" target="_blank" rel="noopener noreferrer">Guide on how to enable</a><h3></td>
+  </tr>
+</tbody>
+</table>
 
 
 &nbsp;
@@ -109,13 +178,13 @@
 > **Note** : 
 > If you have the official Windows Subsystem For Android™ installed, you must [completely uninstall](#uninstallation) it to use MagiskOnWSA. 
 
-> In case you want to preserve your data from the previous installation (official or MagiskOnWSA), you can backup %LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx before uninstallation and restore it after installation.
+> In case you want to preserve your data from the previous installation (official or MagiskOnWSA), you can backup %LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx before uninstallation and restore it after installation.  For a more comprehensive and detailed guide, take a look at the **Backup and Restore section** in this README markdown
 
 1. Go to the [Releases page](https://github.com/YT-Advanced/WSA-Script/releases/latest)
 2. In the latest release, go to the Assets section and download the Windows Subsystem For Android™ version of your choosing (do not download "Source code")
 
 > **Note** : 
-> If you want to download WSA with KernelSU or Magisk Delta, please go to [![Action Tab](https://github.com/YT-Advanced/WSA-Script/actions/workflows/custom_build.yml/badge.svg)](https://github.com/YT-Advanced/WSA-Script/actions/workflows/custom_build.yml) and download the package from the Action. 
+> If you want to download WSA with Magisk Delta, please go to [![Action Tab](https://github.com/YT-Advanced/WSA-Script/actions/workflows/custom_build.yml/badge.svg)](https://github.com/YT-Advanced/WSA-Script/actions/workflows/custom_build.yml) and download the package from the Action. 
 
 3. Check integrity of downloaded file by [Follow this guide](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/Checksum.md)
 4. Extract the zip file
@@ -206,7 +275,7 @@
 
 > **Note**: 
 > 
-> If you want to preseve your data, make a backup of the `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` file. After uninstalling, copy the VHDX file back to the `%LOCALAPPDATA%\Package\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache` folder.
+> If you want to preseve your data, make a backup of the `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` file. After uninstalling, copy the VHDX file back to the `%LOCALAPPDATA%\Package\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache` folder. For a more comprehensive and detailed guide, take a look at the **Backup and Restore section** in this README markdown
 
 - To remove WSA installed:
 
@@ -224,7 +293,45 @@
 </details>
 
 &nbsp;
+      
+<details>     
+   <summary><picture><img style="float: right;" src="https://img.icons8.com/fluency/96/cloud-backup-restore.png" width="60" height="60"/></picture><h1> &nbsp; Backup and Restore Userdata<h1></summary>
 
+## Backing Up Your Userdata
+
+In order to make a backup of your WSA data you must copy the Userdata.vhdx (which includes, but is not limited Android Apps and their data, settings etc.), located at `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx`, to a safe location     
+
+## Restoring Your Backup
+
+Before attempting to restore your backup, you must remove WSA if installed. Then before you run the "Run.bat" script (to reinstall WSA after removing it), you need to remove these lines from Install.ps1: 
+
+Official Magisk:
+```pwsh
+Start-Process "wsa://com.topjohnwu.magisk"
+```
+Magisk Delta:
+```pwsh
+Start-Process "wsa://io.github.huskydg.magisk"
+```
+Magisk Alpha:
+```pwsh
+Start-Process "wsa://io.github.vvb2060.magisk"
+```
+Google Play Store:
+```pwsh
+Start-Process "wsa://com.android.vending"
+```
+Amazon Appstore:
+```pwsh
+Start-Process "wsa://com.amazon.venezia"
+``` 
+After running the script, do not run WSA at all, and go to %localappdata%\Packages and (if the folders do not exist, create them) in MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\ paste the userdata.vhdx
+
+Now run WSA and your serdata should hopefully be restored
+</details>
+      
+&nbsp;
+      
 <details>     
    <summary><picture><img style="float: right;" src="https://img.icons8.com/3d-fluency/94/null/help.png" width="60" height="60"/></picture><h1> &nbsp; FAQ<h1></summary>
 
@@ -294,10 +401,6 @@
 **How do I uninstall Magisk?**
 
 - Request, using [Issues](https://github.com/YT-Advanced/WSA-Script/issues), a Windows Subsystem For Android™ version that doesn't include Magisk from the [Releases page](https://github.com/YT-Advanced/WSA-Script/releases/latest). Then follow the [Installation instructions](#installation)
-
-**Can I switch between OpenGApps and MindTheGapps?**
-
-- No. GApps will no longer function. Do a [complete uninstallation](#uninstallation) before switching
 </details>
 
 &nbsp;
@@ -307,12 +410,14 @@
 
 &nbsp;
 
+### Install KernelSU Manager:
+[<img src="https://img.shields.io/badge/-How%20to%20install%20KernelSU%20Manager-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/KernelSU.md)
 
 ### Check Integrity Guide:
 [<img src="https://img.shields.io/badge/-HOW%20TO%20CHECK%20INTEGRITY%20OF%20DOWNLOAD%20PACKAGES-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/Checksum.md)
 
-### Install KernerSU:
-[<img src="https://img.shields.io/badge/-How%20to%20install%20KernelSU%20Manager-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/KernelSU.md)
+### How to build with latest WSA Insider Build:
+[<img src="https://img.shields.io/badge/-How%20to%20create%20Custom%20Build%20with%20Latest%20Insider%20Version-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/GetWIPLatestBuild.md)
 
 ### GPU Guide:
 [<img src="https://img.shields.io/badge/-How%20to%20Change%20the%20GPU%20Used-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/ChangingGPU.md)
@@ -323,7 +428,7 @@
 ### Moving WSA to another drive or partition:
 [<img src="https://img.shields.io/badge/-How%20to%20Move%20WSA%20to%20another%20drive%20or%20partition-474154?style=for-the-badge&logoColor=white&logo=github" />](https://github.com/YT-Advanced/WSA-Script/blob/main/Guides/MoveToExtDrive.md)
 
-
+GetWIPLatestBuild.md
 </details> 
 
 &nbsp;
@@ -366,11 +471,7 @@
 - [Cinit and the WSAPatch Guide](https://github.com/cinit/WSAPatch): Many thanks for the comprehensive guide, files and support provided by Cinit and the contributers at the WSAPatch repository. Windows™ 10 Builds in this repo rely on the hard work of this project and  hence credit is given where due
 - [StoreLib](https://github.com/StoreDev/StoreLib): API for downloading WSA
 - [Magisk](https://github.com/topjohnwu/Magisk): The Magic Mask for Android
-- [The Open Google Apps Project](https://opengapps.org): Script the automatic generation of up-to-date Google Apps packages
-- [WSA-Kernel-SU](https://github.com/LSPosed/WSA-Kernel-SU): A kernel module to provide /system/xbin/su to Android Kernel
-- [Kernel Assisted Superuser](https://git.zx2c4.com/kernel-assisted-superuser): Kernel assisted means of gaining a root shell for Android
-- [WSAGAScript](https://github.com/ADeltaX/WSAGAScript): The first GApps integration script for WSA
-- [MagiskOnWSA](https://github.com/LSPosed/MagiskOnWSA): `Deprecated` Integrate Magisk root and Google Apps into WSA
+- [KernelSU](https://github.com/tiann/KernelSU): A Kernel based root solution for Android
 - [MagiskOnWSALocal](https://github.com/LSPosed/MagiskOnWSALocal): Integrate Magisk root and Google Apps into WSA
 
 ***The repository is provided as a utility.***

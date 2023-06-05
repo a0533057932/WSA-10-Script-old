@@ -1,5 +1,22 @@
-# Automated Install script by Midonei
-$Host.UI.RawUI.WindowTitle = "Installing MagiskOnWSA..."
+# This file is part of MagiskOnWSALocal.
+#
+# MagiskOnWSALocal is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# MagiskOnWSALocal is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with MagiskOnWSALocal.  If not, see <https://www.gnu.org/licenses/>.
+#
+# Copyright (C) 2023 LSPosed Contributors
+#
+
+$Host.UI.RawUI.WindowTitle = "Installing MagiskOnWSA...."
 function Test-Administrator {
     [OutputType([bool])]
     param()
@@ -14,95 +31,91 @@ function Get-InstalledDependencyVersion {
         [string]$Name,
         [string]$ProcessorArchitecture
     )
-    process {
-        return Get-AppxPackage -Name $Name | ForEach-Object { if ($_.Architecture -eq $ProcessorArchitecture) { $_ } } | Sort-Object -Property Version | Select-Object -ExpandProperty Version -Last 1;
+    PROCESS {
+        If ($null -Ne $ProcessorArchitecture) {
+            return Get-AppxPackage -Name $Name | ForEach-Object { if ($_.Architecture -Eq $ProcessorArchitecture) { $_ } } | Sort-Object -Property Version | Select-Object -ExpandProperty Version -Last 1;
+        }
     }
 }
 
-function DownloadWinHttpDLL {
-        Invoke-WebRequest -Uri https://github.com/cinit/WSAPatch/blob/main/original.dll.win11.22h2/x86_64/winhttp.dll?raw=true -OutFile .\WSAClient\winhttp.dll
-        $hash = Get-FileHash ".\WSAClient\winhttp.dll" | Select-Object Hash
-        if ($hash -ne "373A742B37DCF3DD18E895F33816AEF1FC238D128B3BF2AA528F6838AB1DC304") 
-        {
-            DownloadWinHttpDLL
-        }
-}
-
-function DownloadWSAPatchDLL {
-        Invoke-WebRequest -Uri https://github.com/YT-Advanced/WSA-Script/blob/main/DLL/WsaPatch.dll?raw=true -OutFile .\WSAClient\WsaPatch.dll
-        $hash = Get-FileHash ".\WSAClient\WsaPatch.dll" | Select-Object Hash
-        if ($hash -ne "e15a619f91891419c2be09264d4a8e1ccbead002a895902f721d59ebc63a4b89") 
-        {
-            DownloadWSAPatchDLL
-        }
-}
-
-function DownloadIcuDLL {
-        Invoke-WebRequest -Uri https://github.com/YT-Advanced/WSA-Script/blob/main/DLL/icu.dll?raw=true -OutFile .\WSAClient\icu.dll
-        $hash = Get-FileHash ".\WSAClient\icu.dll" | Select-Object Hash
-        if ($hash -ne "46eae8b730995198d24f1bc9bbbac6d05be5829acddc056536c024ecc927bd03") 
-        {
-            DownloadIcuDLL
-        }
-}
-
-Function Test-CommandExists {
-    Param ($command)
-    $oldPreference = $ErrorActionPreference
+Function Test-CommandExist {
+    Param ($Command)
+    $OldPreference = $ErrorActionPreference
     $ErrorActionPreference = 'stop'
-    try { if (Get-Command $command) { RETURN $true } }
-    Catch { Write-Host "$command does not exist"; RETURN $false }
-    Finally { $ErrorActionPreference = $oldPreference }
-} #end function test-CommandExists
+    try { if (Get-Command $Command) { RETURN $true } }
+    Catch { RETURN $false }
+    Finally { $ErrorActionPreference = $OldPreference }
+} #end function Test-CommandExist
 
 function Finish {
-    Write-Host "Optimizing VHDX size...."
-    If (Test-CommandExists Optimize-VHD) { Optimize-VHD ".\*.vhdx" -Mode Full }
     Clear-Host
+    If (Test-CommandExist Optimize-VHD) {
+        Write-Output "Optimizing VHDX size...."
+        Optimize-VHD ".\*.vhdx" -Mode Full
+    }
+    Clear-Host
+    Start-Process "shell:AppsFolder\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe!SettingsApp"
     Start-Process "wsa://com.topjohnwu.magisk"
-    Start-Process "wsa://io.github.huskydg.magisk"
     Start-Process "wsa://com.android.vending"
+    Start-Process "wsa://com.android.settings"
+}
+
+If (Test-CommandExist pwsh.exe) {
+    $pwsh = "pwsh.exe"
+}
+Else {
+    $pwsh = "powershell.exe"
 }
 
 If (-Not (Test-Administrator)) {
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
-    $proc = Start-Process -PassThru -WindowStyle Hidden -Verb RunAs ConHost.exe -Args "powershell -ExecutionPolicy Bypass -Command Set-Location '$PSScriptRoot'; &'$PSCommandPath' EVAL"
-    $proc.WaitForExit()
-    If ($proc.ExitCode -Ne 0) {
-        Clear-Host
+    $Proc = Start-Process -PassThru -Verb RunAs $pwsh -Args "-ExecutionPolicy Bypass -Command Set-Location '$PSScriptRoot'; &'$PSCommandPath' EVAL"
+    If ($null -Ne $Proc) {
+        $Proc.WaitForExit()
+    }
+    If ($null -Eq $Proc -Or $Proc.ExitCode -Ne 0) {
         Write-Warning "Failed to launch start as Administrator`r`nPress any key to exit"
         $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
     }
     exit
 }
 ElseIf (($args.Count -Eq 1) -And ($args[0] -Eq "EVAL")) {
-    Start-Process ConHost.exe -Args "powershell -ExecutionPolicy Bypass -Command Set-Location '$PSScriptRoot'; &'$PSCommandPath'"
+    Start-Process $pwsh -NoNewWindow -Args "-ExecutionPolicy Bypass -Command Set-Location '$PSScriptRoot'; &'$PSCommandPath'"
     exit
 }
 
 $FileList = Get-Content -Path .\filelist.txt
 If (((Test-Path -Path $FileList) -Eq $false).Count) {
-    Write-Error "Some files are missing in the folder. Please try to build again. Press any key to exist"
+    Write-Error "Some files are missing in the folder. Please try to build again. Press any key to exit"
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
     exit 1
 }
 
-If ((Test-Path -Path "MakePri.ps1") -Eq $true) {
-    $ProcMakePri = Start-Process powershell.exe -PassThru -Args "-ExecutionPolicy Bypass -File MakePri.ps1" -WorkingDirectory $PSScriptRoot
+If (((Test-Path -Path "MakePri.ps1") -And (Test-Path -Path "makepri.exe")) -Eq $true) {
+    $ProcMakePri = Start-Process $pwsh -PassThru -NoNewWindow -Args "-ExecutionPolicy Bypass -File MakePri.ps1" -WorkingDirectory $PSScriptRoot
+    $null = $ProcMakePri.Handle
     $ProcMakePri.WaitForExit()
     If ($ProcMakePri.ExitCode -Ne 0) {
-        Write-Warning "Failed to merge resources, WSA Seetings will always be in English`r`n"
+        Write-Warning "Failed to merge resources, WSA Seetings will always be in English`r`nPress any key to continue"
+        $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
     }
+    $Host.UI.RawUI.WindowTitle = "Installing MagiskOnWSA...."
 }
 
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"
 
+# When using PowerShell which is installed with MSIX
+# Get-WindowsOptionalFeature and Enable-WindowsOptionalFeature will fail
+# See https://github.com/PowerShell/PowerShell/issues/13866
+if ($PSHOME.contains("8wekyb3d8bbwe")) {
+    Import-Module DISM -UseWindowsPowerShell
+}
+
 If ($(Get-WindowsOptionalFeature -Online -FeatureName 'VirtualMachinePlatform').State -Ne "Enabled") {
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'VirtualMachinePlatform'
-    Clear-Host
     Write-Warning "Need restart to enable virtual machine platform`r`nPress y to restart or press any key to exit"
-    $key = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
-    If ("y" -Eq $key.Character) {
+    $Key = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
+    If ("y" -Eq $Key.Character) {
         Restart-Computer -Confirm
     }
     Else {
@@ -112,17 +125,23 @@ If ($(Get-WindowsOptionalFeature -Online -FeatureName 'VirtualMachinePlatform').
 
 [xml]$Xml = Get-Content ".\AppxManifest.xml";
 $Name = $Xml.Package.Identity.Name;
-Write-Host "Installing $Name version: $($Xml.Package.Identity.Version)"
+Write-Output "Installing $Name version: $($Xml.Package.Identity.Version)"
 $ProcessorArchitecture = $Xml.Package.Identity.ProcessorArchitecture;
 $Dependencies = $Xml.Package.Dependencies.PackageDependency;
 $Dependencies | ForEach-Object {
     $InstalledVersion = Get-InstalledDependencyVersion -Name $_.Name -ProcessorArchitecture $ProcessorArchitecture;
     If ( $InstalledVersion -Lt $_.MinVersion ) {
-        Write-Host "Dependency package $($_.Name) $ProcessorArchitecture required minimum version: $($_.MinVersion). Installing...."
+        If ($env:WT_SESSION) {
+            $env:WT_SESSION = $null
+            Write-Output "Dependency should be installed but Windows Terminal is in use. Restarting to conhost.exe"
+            Start-Process conhost.exe -Args "powershell.exe -ExecutionPolicy Bypass -Command Set-Location '$PSScriptRoot'; &'$PSCommandPath'"
+            exit 1
+        }
+        Write-Output "Dependency package $($_.Name) $ProcessorArchitecture required minimum version: $($_.MinVersion). Installing...."
         Add-AppxPackage -ForceApplicationShutdown -ForceUpdateFromAnyVersion -Path "$($_.Name)_$ProcessorArchitecture.appx"
     }
     Else {
-        Write-Host "Dependency package $($_.Name) $ProcessorArchitecture current version: $InstalledVersion. Nothing to do."
+        Write-Output "Dependency package $($_.Name) $ProcessorArchitecture current version: $InstalledVersion. Nothing to do."
     }
 }
 
@@ -130,7 +149,6 @@ $Installed = $null
 $Installed = Get-AppxPackage -Name $Name
 
 If (($null -Ne $Installed) -And (-Not ($Installed.IsDevelopmentMode))) {
-    Clear-Host
     Write-Warning "There is already one installed WSA. Please uninstall it first.`r`nPress y to uninstall existing WSA or press any key to exit"
     $key = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
     If ("y" -Eq $key.Character) {
@@ -142,13 +160,19 @@ If (($null -Ne $Installed) -And (-Not ($Installed.IsDevelopmentMode))) {
     }
 }
 
+If (Test-CommandExist WsaClient) {
+    Write-Output "Shutting down WSA...."
+    Start-Process WsaClient -Wait -Args "/shutdown"
+}
 Stop-Process -Name "WsaClient" -ErrorAction SilentlyContinue
+Write-Output "Installing MagiskOnWSA...."
+
 $winver = (Get-WmiObject -class Win32_OperatingSystem).Caption
 if ($winver.Contains("10")) {
     if ((Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").DisplayVersion -eq "22H2")
     {
         Clear-Host
-        Write-Host "Patching Windows 10 AppxManifest file..."
+        Write-Output "Patching Windows 10 AppxManifest file..."
         $xml = [xml](Get-Content '.\AppxManifest.xml')
         $nsm = New-Object Xml.XmlNamespaceManager($xml.NameTable)
         $nsm.AddNamespace('rescap', "http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities")
@@ -161,10 +185,10 @@ if ($winver.Contains("10")) {
         $xml.Save(".\AppxManifest.xml")
 
         Clear-Host
-        Write-Host "Downloading modifided DLL file..."
-        DownloadWinHttpDLL
-        DownloadWsaPatchDLL
-        DownloadIcuDLL
+        Write-Output "Downloading modifided DLL file..."
+        Invoke-WebRequest -Uri https://github.com/cinit/WSAPatch/blob/main/original.dll.win11.22h2/x86_64/winhttp.dll?raw=true -OutFile .\WSAClient\winhttp.dll
+        Invoke-WebRequest -Uri https://github.com/YT-Advanced/WSA-Script/blob/main/DLL/WsaPatch.dll?raw=true -OutFile .\WSAClient\WsaPatch.dll
+        Invoke-WebRequest -Uri https://github.com/YT-Advanced/WSA-Script/blob/main/DLL/icu.dll?raw=true -OutFile .\WSAClient\icu.dll
     }
     else {
     Clear-Host
@@ -174,15 +198,11 @@ if ($winver.Contains("10")) {
     }
 }
 
-Clear-Host
-Write-Host "Installing MagiskOnWSA..."
-If (Test-CommandExists WsaClient) { Start-Process WsaClient -Wait -Args "/shutdown" }
 Add-AppxPackage -ForceApplicationShutdown -ForceUpdateFromAnyVersion -Register .\AppxManifest.xml
 If ($?) {
     Finish
 }
 ElseIf ($null -Ne $Installed) {
-    Clear-Host
     Write-Error "Failed to update.`r`nPress any key to uninstall existing installation while preserving user data.`r`nTake in mind that this will remove the Android apps' icon from the start menu.`r`nIf you want to cancel, close this window now."
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
     Clear-Host
@@ -192,5 +212,5 @@ ElseIf ($null -Ne $Installed) {
         Finish
     }
 }
-Write-Host "All Done!`r`nPress any key to exit"
+Write-Output "All Done!`r`nPress any key to exit"
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')
